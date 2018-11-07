@@ -37,7 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'bootstrapform',
     'SRP',
+
 ]
 
 MIDDLEWARE = [
@@ -129,4 +131,6 @@ MEDIA_ROOT = 'media_files'
 
 LOGIN_URL = 'login'
 
-LOGIN_REDIRECT_URL = 'account_user'
+LOGIN_REDIRECT_URL = 'profile'
+
+LOGOUT_REDIRECT_URL = 'main_page'
