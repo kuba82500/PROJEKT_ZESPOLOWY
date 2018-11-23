@@ -1,0 +1,57 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %} {% endblock %}</title>
+<link rel="stylesheet" type="text/css" href="{% static "/style.css" %}">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+      integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+</head>
+<body>
+<div id="container">
+    <div id="top" class="top">
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+
+    </div>
+    <div class="mx-auto order-0">
+        <a class="navbar-brand mx-auto" href="">Uniwersytet Warmińsko-Mazurski</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
+    <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link active hvr-underline-from-center" href="{% url 'signup' %}">Załóż konto</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active hvr-underline-from-center" href="{% url 'login' %}">Zaloguj</a>
+            </li>
+        </ul>
+    </div>
+    </nav>
+    </div>
+    <div id="mid" class="mid">
+        {% block body %}
+            <div class="container">
+            <h1>Rejestracja</h1>
+            <form class="form-group" action="{% url 'main_page' %}" method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <br>
+                <button type="submit">Zarejestruj</button>
+            </form>
+            </div>
+        {% endblock %}
+    </div>
+    <div id="footer" class="footer">
+            <div class="footer-copyright text-center py-3 bg-dark text-white">
+                © Copyright: Projekt Zespołowy 2018/2019
+            </div>
+    </div>
+</div>
+</body>
+</html>
