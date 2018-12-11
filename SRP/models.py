@@ -12,17 +12,17 @@ class Firma(models.Model):
 class Praktyki(models.Model):
     id_Praktyki = models.AutoField(primary_key=True, default=1)
     iloscMiejscMax = models.IntegerField(name="iloscMiejscMax")
-    iloscMiejscZajetych = models.IntegerField(name="iloscMiejscZajetych")
-    dataUtworzenia = models.DateTimeField(name="DataUtworzenia")
+    iloscMiejscZajetych = models.IntegerField(name="iloscMiejscZajetych", blank=True)
+    dataUtworzenia = models.DateField(name="DataUtworzenia", blank=True)
 
-    dataRozpoczecia = models.DateTimeField(name="DataRozpoczecia")
-    dataZakonczenia = models.DateTimeField(name="DataZakonczenia")
-    czyPlatne = models.BooleanField()
-    wynagrodzenia = models.CharField(max_length=45, name="wynagrodzenie")
+    dataRozpoczecia = models.DateField(name="DataRozpoczecia", blank=True)
+    dataZakonczenia = models.DateField(name="DataZakonczenia", blank=True)
+    czyPlatne = models.BooleanField(blank=True)
+    wynagrodzenia = models.CharField(max_length=45, name="wynagrodzenie", blank=True)
     stanowisko = models.CharField(max_length=45, name="Stanowisko")
     opis = models.TextField(max_length=255, name="opis")
     miasto = models.CharField(max_length=45, name="miasto")
-    #id_Firma = models.ForeignKey(Firma, on_delete=models.SET_NULL())
+    id_Firma = models.ForeignKey(Firma, on_delete=models.CASCADE, blank=True)
 
 
 class Grupa(models.Model):
@@ -31,8 +31,8 @@ class Grupa(models.Model):
     nazwiskoUczestnika = models.CharField(max_length=45, name="nazwiskoUczestnika")
     imieProwadzacego = models.CharField(max_length=45, name="imieProwadzacego")
     nazwiskoProwadzacego = models.CharField(max_length=45, name="nazwiskoProwadzacego")
-    #id_Praktyki = models.ForeignKey(Praktyki, on_delete=models.CASCADE)
-    #id_Firma = models.ForeignKey(Firma, on_delete=models.CASCADE)
+    id_Praktyki = models.ForeignKey(Praktyki, on_delete=models.CASCADE)
+    id_Firma = models.ForeignKey(Firma, on_delete=models.CASCADE)
 
 
 class Uzytkownik(models.Model):
@@ -42,9 +42,9 @@ class Uzytkownik(models.Model):
     email = models.EmailField()
     haslo = models.CharField(max_length=45, name="haslo")
     nrIndex = models.CharField(max_length=45, name="numerIndeksu")
-    #dataUtworzenia = models.DateTimeField()
-    #dataEdycji = models.DateTimeField()
-    #czyAdmin = models.BooleanField()
-    #id_Grupa = models.ForeignKey(Grupa, on_delete=models.CASCADE)
-    #id_Praktyki = models.ForeignKey(Praktyki, on_delete=models.CASCADE)
-    #id_Firma = models.ForeignKey(Firma, on_delete=models.CASCADE)
+    dataUtworzenia = models.DateField()
+    dataEdycji = models.DateField()
+    czyAdmin = models.BooleanField()
+    id_Grupa = models.ForeignKey(Grupa, on_delete=models.CASCADE)
+    id_Praktyki = models.ForeignKey(Praktyki, on_delete=models.CASCADE)
+    id_Firma = models.ForeignKey(Firma, on_delete=models.CASCADE)
