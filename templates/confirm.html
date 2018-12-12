@@ -35,10 +35,13 @@
     </nav>
     </div>
     <div id="mid" class="mid">
-        {% block content %}
-            <h1 class="text-center">System Rejestracji na Praktyki</h1>
-            <img src="{% static 'img/logo.jpg' %}" class="rounded mx-auto d-block">
-        {% endblock %}
+        <h1>Czy na pewno chcesz usunąć {{ praktyka.opis }} ?</h1>
+        <form method="POST">
+            {% csrf_token %}
+            <button type="submit">Usuń</button>
+        </form>
+
+
     </div>
     <div id="footer" class="footer">
             <div class="footer-copyright text-center py-3 bg-dark text-white">

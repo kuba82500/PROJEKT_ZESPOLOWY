@@ -35,10 +35,10 @@
     </nav>
     </div>
     <div id="mid" class="mid">
-        {% block content %}
-            <h1 class="text-center">System Rejestracji na Praktyki</h1>
-            <img src="{% static 'img/logo.jpg' %}" class="rounded mx-auto d-block">
-        {% endblock %}
+        <a href="{% url 'str_pr' %}">Stworz praktyke</a><br>
+        <a href="{% url 'praktyki' %}">Lista praktyk</a><br>
+        <p>Aby usunąć praktyke trzeba wpisac w adres : usun_praktyke/(id_Praktyki)</p>
+        <p>Aby edytowac praktyke trzeba wpisac w adres: usun_praktyke/(id_Praktyki)</p>
     </div>
     <div id="footer" class="footer">
             <div class="footer-copyright text-center py-3 bg-dark text-white">

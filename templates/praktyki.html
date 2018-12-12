@@ -35,10 +35,18 @@
     </nav>
     </div>
     <div id="mid" class="mid">
-        {% block content %}
-            <h1 class="text-center">System Rejestracji na Praktyki</h1>
-            <img src="{% static 'img/logo.jpg' %}" class="rounded mx-auto d-block">
-        {% endblock %}
+        <p>Lista praktyk :</p>
+        <ul>
+            {% for praktyki in listapraktyk %}
+                <li>
+                    <td>Stanowisko : {{ praktyki.stanowisko }}</td>
+                    <td>Wynagrodzenie : {{ praktyki.wynagrodzenie }}</td>
+                    <td>Opis : {{ praktyki.opis }}</td>
+                    <button type="submit">Wybierz</button>
+                </li>
+            {% endfor %}
+        </ul>
+
     </div>
     <div id="footer" class="footer">
             <div class="footer-copyright text-center py-3 bg-dark text-white">
