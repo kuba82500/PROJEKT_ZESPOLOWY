@@ -8,7 +8,7 @@ class RegisterForm(ModelForm):
 
     class Meta:
         model = Uzytkownik
-        fields = ['numerIndeksu', 'imie', 'nazwisko', 'email', 'haslo', ]
+        exclude = ['id_Firma', 'id_Grupa', 'id_Praktyki','dataUtworzenia']
 
 
 class StworzPraktyke(ModelForm):
