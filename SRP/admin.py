@@ -1,7 +1,4 @@
 from django.contrib import admin
-from .models import Uzytkownik, Praktyki,Firma
+from .models import Praktyki
 
-
-admin.site.register(Uzytkownik)
 admin.site.register(Praktyki)
-admin.site.register(Firma)

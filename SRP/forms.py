@@ -1,17 +1,50 @@
 from django import forms
-from .models import Uzytkownik, Praktyki
+from .models import Praktyki
 from django.forms import ModelForm
 
 
-class RegisterForm(ModelForm):
-    haslo = forms.CharField(widget=forms.PasswordInput)
-
-    class Meta:
-        model = Uzytkownik
-        exclude = ['id_Firma', 'id_Grupa', 'id_Praktyki','dataUtworzenia']
-
-
 class StworzPraktyke(ModelForm):
+    DataZakonczenia = forms.DateTimeField(widget=forms.TextInput(
+        attrs={
+            'placeholder': 'YYYY-MM-DD',
+            'class': 'form-control'
+        }
+    ))
+    DataRozpoczecia = forms.DateTimeField(widget=forms.TextInput(
+        attrs={
+            'placeholder': 'YYYY-MM-DD',
+            'class': 'form-control'
+        }
+    ))
+    opis = forms.CharField(widget=forms.Textarea(
+        attrs={
+            'rows': '10',
+            'cols': '100',
+            'class': 'form-control'
+        }
+    ))
+    miasto = forms.CharField(widget=forms.TextInput(
+        attrs={
+            'class': 'form-control'
+        }
+    ))
+    stanowisko = forms.CharField(widget=forms.TextInput(
+        attrs={
+            'class': 'form-control'
+        }
+    ))
+    wynagrodzenie = forms.CharField(widget=forms.TextInput(
+        attrs={
+            'class': 'form-control'
+        }
+    ))
+
     class Meta:
         model = Praktyki
-        exclude = ['']
+        fields = [
+            'DataZakonczenia', 'DataRozpoczecia', 'miasto', 'stanowisko', 'opis', 'wynagrodzenie',
+        ]
+
+        widgets = {
+            'id_Firma': forms.HiddenInput(),
+        }
