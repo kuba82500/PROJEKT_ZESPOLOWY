@@ -1,10 +1,11 @@
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
 
 from accounts.views import UserRegisterView, FirmaRegisterView, LoginView, logout_view
-from SRP.views import lista_praktyk, stworz_Praktyke, edytuj_praktyke, usun_praktyke, CRUD, main_page, user_profile
+from SRP.views import lista_praktyk, lista_praktyk_firma, stworz_Praktyke, edytuj_praktyke, usun_praktyke, main_page, \
+    user_profile, dolaczdopraktyk
 
 
 urlpatterns = [
@@ -17,8 +18,9 @@ urlpatterns = [
     path('signup/', UserRegisterView.as_view(), name='signup'),
     path('user_settings/', user_profile, name='user_settings'),
     path('praktyki/', lista_praktyk, name='praktyki'),
+    path('praktyki_firma/', lista_praktyk_firma, name='praktyki_firma'),
     path('str_pr/', stworz_Praktyke, name='create_practice'),
-    path('edytuj_praktyke/<int:id_Praktyki>/', edytuj_praktyke, name="edytuj_praktyke"),
-    path('usun_praktyke/<int:id_Praktyki>/', usun_praktyke, name="usun_praktyke"),
-    path('CRUD/', CRUD, name="CRUD"),
+    path('praktyki_firma/edytuj_praktyke/<int:id_Praktyki>', edytuj_praktyke, name="edytuj_praktyke"),
+    path('praktyki_firma/usun_praktyke/<int:id_Praktyki>', usun_praktyke, name="usun_praktyke"),
+    path('praktyki/dolacz/<int:id_Praktyki>', dolaczdopraktyk, name='dolacz'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
