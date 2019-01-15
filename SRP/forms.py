@@ -4,16 +4,16 @@ from django.forms import ModelForm
 
 
 class StworzPraktyke(ModelForm):
-    DataZakonczenia = forms.DateTimeField(widget=forms.TextInput(
+    dataZakonczenia = forms.DateField(widget=forms.DateInput(
         attrs={
+            'class': 'form-control',
             'placeholder': 'YYYY-MM-DD',
-            'class': 'form-control'
         }
     ))
-    DataRozpoczecia = forms.DateTimeField(widget=forms.TextInput(
+    dataRozpoczecia = forms.DateField(widget=forms.DateInput(
         attrs={
-            'placeholder': 'YYYY-MM-DD',
-            'class': 'form-control'
+            'class': 'form-control',
+            'placeholder': 'YYYY-MM-DD'
         }
     ))
     opis = forms.CharField(widget=forms.Textarea(
@@ -39,10 +39,30 @@ class StworzPraktyke(ModelForm):
         }
     ))
 
+    iloscMiejscMax = forms.IntegerField(widget=forms.TextInput(
+        attrs={
+            'class': 'form-control'
+        }
+    ))
+
     class Meta:
         model = Praktyki
         fields = [
-            'DataZakonczenia', 'DataRozpoczecia', 'miasto', 'stanowisko', 'opis', 'wynagrodzenie',
+            'dataZakonczenia', 'dataRozpoczecia', 'miasto', 'stanowisko', 'opis', 'wynagrodzenie', 'iloscMiejscMax',
+            'iloscMiejscZajetych'
+        ]
+
+        widgets = {
+            'id_Firma': forms.HiddenInput(),
+            'iloscMiejscZajetych': forms.HiddenInput(),
+        }
+
+
+class DodajStudenta(forms.ModelForm):
+    class Meta:
+        model = Praktyki
+        fields = [
+            'id_Firma'
         ]
 
         widgets = {
