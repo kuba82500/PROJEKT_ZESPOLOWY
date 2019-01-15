@@ -23,11 +23,12 @@
             </div>
             <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
                 <ul class="navbar-nav ml-auto">
-
+                    {% if not user.nazwafirmy %}
                     <li class="nav-item">
                         <a class="nav-link active hvr-underline-from-center" href="{% url 'praktyki' %}">Lista
                             dostępnych praktyk</a>
                     </li>
+                    {% endif %}
                     <li class="nav-item">
                         <a class="nav-link active hvr-underline-from-center" href="{% url 'logout' %}">Wyloguj</a>
                     </li>
@@ -41,7 +42,7 @@
                 <p>Dane Firmy : </p>
                 <p>Nazwa Firmy : {{ user.nazwafirmy }}</p>
                 <p>Email : {{ user.email }}</p>
-                <button class="btn btn-secondary bg-dark"><a class="text-white" href="{% url 'praktyki' %}">Wyświetl listę własnych praktyk</a></button><br><br>
+                <button class="btn btn-secondary bg-dark"><a class="text-white" href="{% url 'praktyki_firma' %}">Wyświetl listę własnych praktyk</a></button><br><br>
                 <button class="btn btn-secondary bg-dark"><a class="text-white" href="{% url 'create_practice' %}">Dodaj praktykę do systemu</a></button>
             {% else %}
                 <p>Dane Studenta : </p>

@@ -58,10 +58,12 @@
                 <label>Wynagrodzenie : {{ form.wynagrodzenie }}</label><br>
                 <label>Miasto : {{ form.miasto }}</label><br>
                 <label>Opis : {{ form.opis }}</label><br>
-                <label>Data Rozpoczecia Praktyk : {{ form.DataRozpoczecia }}</label><br>
-                <label>Data Zakonczenia Praktyk : {{ form.DataZakonczenia }}</label>
+                <label>Data Rozpoczecia Praktyk : {{ form.dataRozpoczecia }}</label><br>
+                <label>Data Zakonczenia Praktyk : {{ form.dataZakonczenia }}</label><br>
+                <label>Ilość Miejsc dla praktykantów : {{ form.iloscMiejscMax }}</label>
                 <br>
                 {{ form.id_Firma }}
+                {{ form.iloscMiejscZajetych }}
                 <button type="submit" class="btn btn-secondary bg-dark">Dodaj</button>
             </div>
         </form>

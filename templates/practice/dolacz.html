@@ -17,7 +17,7 @@
 
             </div>
             <div class="mx-auto order-0">
-                <a class="navbar-brand mx-auto" href="{% url 'main' %}">Uniwersytet Warmińsko-Mazurski</a>
+                <a class="navbar-brand mx-auto" href="">Uniwersytet Warmińsko-Mazurski</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -50,23 +50,12 @@
             </div>
         </nav>
     </div>
-    <div id="mid" class="mid">
-        <form method="post" enctype="multipart/form-data">
-            <div class="container">
-                {% csrf_token %}
-                <label>Stanowisko : {{ form.stanowisko }}</label><br>
-                <label>Wynagrodzenie : {{ form.wynagrodzenie }}</label><br>
-                <label>Miasto : {{ form.miasto }}</label><br>
-                <label>Opis : {{ form.opis }}</label><br>
-                <label>Data Rozpoczecia Praktyk : {{ form.dataRozpoczecia }}</label><br>
-                <label>Data Zakonczenia Praktyk : {{ form.dataZakonczenia }}</label><br>
-                <label>Ilość Miejsc dla praktykantów : {{ form.iloscMiejscMax }}</label>
-                <br>
-                {{ form.id_Firma }}
-                {{ form.iloscMiejscZajetych }}
-                <button type="submit" class="btn btn-secondary bg-dark">Edytuj</button>
-                <button class="btn btn-secondary bg-dark"><a class="text-white" href="{% url 'praktyki' %}">Powrót</a></button>
-            </div>
+    <div id="mid" class="mid text-center">
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.id_Firma }}
+            <h2>Czy chcesz dołączyć do wybranych praktyk ?  </h2>
+            <button class="btn btn-secondary bg-dark">Dołącz do praktyk</button>
         </form>
 
     </div>
