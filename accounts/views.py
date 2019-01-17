@@ -2,16 +2,25 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, get_user_model, logout
 from django.http import HttpResponse
 from django.utils.http import is_safe_url
-from .forms import LoginForm, RegisterForm, RegisterFormFirma
+from .forms import LoginForm, RegisterForm, RegisterFormFirma, RegisterFormOpiekun
 from django.views.generic.edit import CreateView, FormView
 
 User = get_user_model()
 
 
+class OpiekunRegisterView(CreateView):
+    form_class = RegisterFormOpiekun
+    template_name = 'registration/signup_opiekun.html'
+    success_url = '/'
+
+    def form_invalid(self, form):
+        return HttpResponse("Podaj wszystkie wymagane dane do rejestracji")
+
+
 class UserRegisterView(CreateView):
     form_class = RegisterForm
     template_name = 'registration/signup.html'
-    success_url = 'login'
+    success_url = '/'
 
     def form_invalid(self, form):
         return HttpResponse("Podaj wszystkie wymagane dane do rejestracji")
@@ -20,7 +29,7 @@ class UserRegisterView(CreateView):
 class FirmaRegisterView(CreateView):
     form_class = RegisterFormFirma
     template_name = 'registration/signup_firm.html'
-    success_url = 'login'
+    success_url = '/'
 
     def form_invalid(self, form):
         return HttpResponse("Podaj wszystkie wymagane dane do rejestracji")

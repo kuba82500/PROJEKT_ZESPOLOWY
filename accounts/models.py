@@ -39,6 +39,24 @@ class UserManager(BaseUserManager):
         user.firma = is_firma
         user.active = is_active
         user.save(using=self._db)
+        return user
+
+    def create_opiekun(self, email, password=None, is_active=True, is_admin=False,
+                       is_opiekun=True):
+        if not email:
+            raise ValueError("Wpisz poprawny Email")
+        if not password:
+            raise ValueError("Wpisz haslo")
+        user = self.model(
+            email=email,
+            is_staff=True
+        )
+        user.set_password(password)
+        user.admin = is_admin
+        user.opiekun = is_opiekun
+        user.active = is_active
+        user.save(using=self._db)
+        return user
 
     def create_staffuser(self, email, password=None):
         user = self.create_user(
@@ -68,11 +86,12 @@ class User(AbstractBaseUser):
     email = models.EmailField(unique=True, max_length=255)
     name = models.CharField(max_length=255, blank=True, null=True)
     surname = models.CharField(max_length=255, blank=True, null=True)
-    pesel = models.CharField(blank=True, null=True, max_length=9)
+    pesel = models.CharField(blank=True, null=True, max_length=11)
     active = models.BooleanField(default=True)
     staff = models.BooleanField(default=False)
     admin = models.BooleanField(default=False)
     firma = models.BooleanField(default=False)
+    opiekun = models.BooleanField(default=False)
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
@@ -111,3 +130,11 @@ class User(AbstractBaseUser):
     @property
     def is_admin(self):
         return self.admin
+
+    @property
+    def is_firma(self):
+        return self.firma
+
+    @property
+    def is_opiekun(self):
+        return self.opiekun
