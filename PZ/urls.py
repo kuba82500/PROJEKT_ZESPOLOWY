@@ -3,7 +3,7 @@ from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
 
-from accounts.views import UserRegisterView, FirmaRegisterView, LoginView, logout_view
+from accounts.views import UserRegisterView, FirmaRegisterView, LoginView, logout_view, OpiekunRegisterView
 from SRP.views import lista_praktyk, lista_praktyk_firma, stworz_Praktyke, edytuj_praktyke, usun_praktyke, main_page, \
     user_profile, dolaczdopraktyk
 
@@ -14,6 +14,7 @@ urlpatterns = [
     path('main/', main_page, name='main_page'),
     path('login/', LoginView.as_view(), name='login'),
     path('logout/', logout_view, name='logout'),
+    path('signup_opiekun/', OpiekunRegisterView.as_view(), name='signup_opiekun'),
     path('signup_firm/', FirmaRegisterView.as_view(), name='signup_firm'),
     path('signup/', UserRegisterView.as_view(), name='signup'),
     path('user_settings/', user_profile, name='user_settings'),
