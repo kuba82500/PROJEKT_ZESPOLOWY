@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .forms import StworzPraktyke, DodajStudenta
-from .models import Praktyki
+from .models import Praktyki, Grupa
 from accounts.models import User
 
 
@@ -11,7 +11,9 @@ def main_page(request):
 
 @login_required()
 def user_profile(request):
-    return render(request, 'account/profile.html')
+    user = User.objects.get(email=request.user.email)
+    praktyka = Grupa.objects.all().filter(uczestnik=user)
+    return render(request, 'account/profile.html', {'praktyka': praktyka})
 
 
 def lista_praktyk(request):
@@ -35,7 +37,7 @@ def stworz_Praktyke(request):
         instance = form.save(commit=False)
         instance.id_Firma = user
         instance.save()
-        redirect(lista_praktyk_firma)
+        return redirect(lista_praktyk_firma)
 
     return render(request, 'practice/stworz_Praktyke.html', {'form': form}, {'user': user})
 
@@ -65,14 +67,16 @@ def usun_praktyke(request, id_Praktyki):
 
 @login_required()
 def dolaczdopraktyk(request, id_Praktyki):
-    form = DodajStudenta(request.POST or None)
     praktyka = get_object_or_404(Praktyki, pk=id_Praktyki)
-    user = User.objects.get(nrindeks=request.user.nrindeks)
+    user = User.objects.get(email=request.user.email)
+    form = DodajStudenta(request.POST or None)
 
     if request.method == 'POST':
-        instance = form.save(commit=False)
-        instance.id_Firma = user
-        instance.save()
+        if form.is_valid():
+            instance = form.save(commit=False)
+            instance.id_Praktyki = praktyka
+            instance.uczestnik = user
+            instance.save()
         return redirect(lista_praktyk)
 
-    return render(request, 'practice/dolacz.html', {'form': form}, {'praktyka': praktyka})
+    return render(request, 'practice/dolacz.html', {'form': form})

@@ -24,9 +24,9 @@ class Praktyki(models.Model):
 
 class Grupa(models.Model):
     id_Grupy = models.AutoField(primary_key=True)
-    imieUczestnika = models.CharField(max_length=45)
-    nazwiskoUczestnika = models.CharField(max_length=45)
-    imieProwadzacego = models.CharField(max_length=45)
-    nazwiskoProwadzacego = models.CharField(max_length=45)
-    id_Praktyki = models.ForeignKey(Praktyki, on_delete=models.CASCADE)
-    id_Firma = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True, blank=True)
+    id_Praktyki = models.ForeignKey(Praktyki, on_delete=models.CASCADE, blank=True, null=True)
+    uczestnik = models.OneToOneField(settings.AUTH_USER_MODEL, blank=True, null=True,
+                                     on_delete=models.SET_NULL)
+
+    def __str__(self):
+        return self.id_Praktyki.stanowisko

@@ -1,5 +1,5 @@
 from django import forms
-from .models import Praktyki
+from .models import Praktyki, Grupa
 from django.forms import ModelForm
 
 
@@ -60,11 +60,12 @@ class StworzPraktyke(ModelForm):
 
 class DodajStudenta(forms.ModelForm):
     class Meta:
-        model = Praktyki
+        model = Grupa
         fields = [
-            'id_Firma'
+            'id_Praktyki', 'uczestnik'
         ]
 
         widgets = {
-            'id_Firma': forms.HiddenInput(),
+            'id_Praktyki': forms.HiddenInput(),
+            'uczestnik': forms.HiddenInput(),
         }
