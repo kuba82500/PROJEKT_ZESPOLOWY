@@ -52,7 +52,9 @@
     </div>
     <div id="mid" class="mid text-center">
 
-        <ul class="table text-justify">
+        <ul class="table text-right">
+        <div class="text-justify">
+        <br>
             <h3>Lista praktyk :</h3>
             <br>
             {% for praktyki in listapraktyk %}
@@ -70,8 +72,7 @@
                 <tr>Data Rozpoczecia : {{ praktyki.dataRozpoczecia }} Data Zakończenia
                     : {{ praktyki.dataZakonczenia }}</tr><br>
                 <tr>Kontakt : {{ praktyki.id_Firma }}</tr><br>
-                <tr>Miejsca dostępne : {{ praktyki.iloscMiejscZajetych }} / {{ praktyki.iloscMiejscMax }}</tr>
-                <br><br>
+                <br>
                 {% ifequal id_Firma user.nazwafirmy %}
                     <button class="btn btn-secondary bg-dark"><a class="text-white" href="dolacz/{{ praktyki.id_Praktyki }}">Wybierz</a></button>
                 {% else %}
@@ -85,6 +86,7 @@
                 {% endifequal %}
                 <br><br>
             {% endfor %}
+        </div>
         </ul>
     </div>
     <div id="footer" class="footer">

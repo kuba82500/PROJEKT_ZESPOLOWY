@@ -29,40 +29,32 @@
 
             </ul>
 
+        </div>
     </nav>
 </div>
 <div class="container">
     <div class="login-form">
         <div class="main-div">
             <div class="panel">
-                <h2>Rejestracja dla Firm</h2>
+                <h2>Rejestracja</h2>
                 <p>Wypełnij wymagane pola</p>
             </div>
             <form id="Login" method="POST">
-                    {% csrf_token %}
+                {% csrf_token %}
                 <div class="form-group">
-
-
-                    {{ form.nazwafirmy }}
-
-                </div>
-
-                <div class="form-group">
-
-                    {{ form.email }}
+                    EMAIL : {{ form.email }}
 
                 </div>
                 <div class="form-group">
 
-                    {{ form.password1 }}
+                    HASLO : {{ form.password1 }}
 
                 </div>
                 <div class="form-group">
 
-                    {{ form.password2 }}
+                    HASLO : {{ form.password2 }}
 
                 </div>
-
                 <button type="submit" class="btn btn-primary">Zarejestruj</button>
 
             </form>
@@ -75,6 +67,7 @@
         © Copyright: Projekt Zespołowy 2018/2019
     </div>
 </div>
+
 </body>
 
 </html>

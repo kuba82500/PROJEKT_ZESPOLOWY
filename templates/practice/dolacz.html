@@ -53,11 +53,13 @@
     <div id="mid" class="mid text-center">
         <form method="POST">
             {% csrf_token %}
-            {{ form.id_Firma }}
+            {{ form.id_Praktyki }}
+            {{ form.uczestnik }}
             <h2>Czy chcesz dołączyć do wybranych praktyk ?  </h2>
+            <br>
             <button class="btn btn-secondary bg-dark">Dołącz do praktyk</button>
         </form>
-
+    <br><br>
     </div>
     <div id="footer" class="footer">
         <div class="footer-copyright text-center py-3 bg-dark text-white">
