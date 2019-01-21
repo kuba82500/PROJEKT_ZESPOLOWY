@@ -23,7 +23,7 @@ class UserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
-    def create_firma(self, email, nazwafirmy, password=None, is_active=True, is_staff=False, is_admin=False,
+    def create_firma(self, email, nazwafirmy, password=None, is_active=False, is_staff=False, is_admin=False,
                      is_firma=True):
         if not email:
             raise ValueError('Wpisz poprawny email')
@@ -32,6 +32,7 @@ class UserManager(BaseUserManager):
         user = self.model(
             email=email,
             nazwafirmy=nazwafirmy,
+            active=False,
         )
         user.set_password(password)
         user.staff = is_staff
