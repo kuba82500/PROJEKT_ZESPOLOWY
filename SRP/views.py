@@ -1,12 +1,30 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
-from .forms import StworzPraktyke, DodajStudenta
+from .forms import StworzPraktyke, DodajStudenta, AktywujFirme
 from .models import Praktyki, Grupa
 from accounts.models import User
 
 
 def main_page(request):
     return render(request, 'main.html')
+
+
+@login_required()
+def listafirm(request):
+    firma = User.objects.all()
+    return render(request, 'account/firmy.html', {'firmy': firma})
+
+
+@login_required()
+def activefirm(request, id):
+    firma = get_object_or_404(User, id=id)
+    form = AktywujFirme(request.POST or None, instance=firma)
+
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+
+    return render(request, 'account/activefirm.html', {'form': form})
 
 
 @login_required()
@@ -18,7 +36,8 @@ def user_profile(request):
 
 def lista_praktyk(request):
     lista_praktyk = Praktyki.objects.all()
-    return render(request, 'practice/praktyki.html', {'listapraktyk': lista_praktyk})
+    lista_grup = Grupa.objects.all()
+    return render(request, 'practice/praktyki.html', {'listapraktyk': lista_praktyk}, {'lista_grup': lista_grup})
 
 
 @login_required()

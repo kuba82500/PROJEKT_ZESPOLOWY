@@ -7,8 +7,6 @@ import datetime
 
 class Praktyki(models.Model):
     id_Praktyki = models.AutoField(primary_key=True)
-    iloscMiejscMax = models.CharField(null=True, blank=True, max_length=15)
-    iloscMiejscZajetych = models.CharField(blank=True, null=True, max_length=15, default=0)
     dataUtworzenia = models.DateField(auto_now_add=True)
     dataRozpoczecia = models.DateField(null=True, blank=True)
     dataZakonczenia = models.DateField(null=True, blank=True)

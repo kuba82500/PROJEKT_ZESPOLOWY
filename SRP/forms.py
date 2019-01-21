@@ -1,6 +1,8 @@
 from django import forms
-from .models import Praktyki, Grupa
 from django.forms import ModelForm
+
+from .models import Praktyki, Grupa
+from accounts.models import User
 
 
 class StworzPraktyke(ModelForm):
@@ -48,13 +50,11 @@ class StworzPraktyke(ModelForm):
     class Meta:
         model = Praktyki
         fields = [
-            'dataZakonczenia', 'dataRozpoczecia', 'miasto', 'stanowisko', 'opis', 'wynagrodzenie', 'iloscMiejscMax',
-            'iloscMiejscZajetych'
+            'dataZakonczenia', 'dataRozpoczecia', 'miasto', 'stanowisko', 'opis', 'wynagrodzenie',
         ]
 
         widgets = {
             'id_Firma': forms.HiddenInput(),
-            'iloscMiejscZajetych': forms.HiddenInput(),
         }
 
 
@@ -69,3 +69,11 @@ class DodajStudenta(forms.ModelForm):
             'id_Praktyki': forms.HiddenInput(),
             'uczestnik': forms.HiddenInput(),
         }
+
+
+class AktywujFirme(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = [
+            'active',
+        ]
