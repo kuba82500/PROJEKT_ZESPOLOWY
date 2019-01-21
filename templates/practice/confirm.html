@@ -12,36 +12,52 @@
 <body>
 <div id="container">
     <div id="top" class="top">
-<nav class="navbar navbar-expand-md navbar-dark bg-dark">
-    <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+            <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
 
+            </div>
+            <div class="mx-auto order-0">
+                <a class="navbar-brand mx-auto" href="{% url 'main' %}">Uniwersytet Warmińsko-Mazurski</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+            <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+                <ul class="navbar-nav ml-auto">
+
+                    {% if user.nazwafirmy %}
+                        <button class="btn btn-secondary bg-dark"><a class="text-white"
+                                                                     href="{% url 'create_practice' %}">Dodaj
+                            Praktyke</a></button>
+                    {% else %}
+
+                    {% endif %}
+                    {% if user.name %}
+                        <li class="nav-item">
+                            <a class="nav-link active hvr-underline-from-center"
+                               href="{% url 'user_settings' %}">{{ user.name }}</a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link active hvr-underline-from-center"
+                               href="{% url 'user_settings' %}">{{ user.nazwafirmy }}</a>
+                        </li>
+                    {% endif %}
+                    <li class="nav-item">
+                        <a class="nav-link active hvr-underline-from-center" href="{% url 'logout' %}">Wyloguj</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
     </div>
-    <div class="mx-auto order-0">
-        <a class="navbar-brand mx-auto" href="">Uniwersytet Warmińsko-Mazurski</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-    </div>
-    <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-                <a class="nav-link active hvr-underline-from-center" href="{% url 'signup' %}">Załóż konto</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link active hvr-underline-from-center" href="{% url 'login' %}">Zaloguj</a>
-            </li>
-        </ul>
-    </div>
-    </nav>
-    </div>
-    <div id="mid" class="mid">
+    <div id="mid" class="mid text-center">
         <h1>Czy na pewno chcesz usunąć {{ praktyka.opis }} ?</h1>
         <form method="POST">
             {% csrf_token %}
-            <button type="submit">Usuń</button>
+            <button type="submit" class="btn btn-secondary bg-dark">Usuń</button>
         </form>
 
-
+<br>
     </div>
     <div id="footer" class="footer">
             <div class="footer-copyright text-center py-3 bg-dark text-white">

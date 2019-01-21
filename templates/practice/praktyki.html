@@ -53,40 +53,42 @@
     <div id="mid" class="mid text-center">
 
         <ul class="table text-right">
-        <div class="text-justify">
-        <br>
-            <h3>Lista praktyk :</h3>
-            <br>
-            {% for praktyki in listapraktyk %}
+            <div class="text-justify">
+                <br>
+                <h3>Lista praktyk :</h3>
+                <br>
+                {% for praktyki in listapraktyk %}
 
-                <tr>Stanowisko : {{ praktyki.stanowisko }}</tr>
-                <br>
-                {% ifequal praktyki.wynagrodzenie '0' %}
-                    Wynagrodzenie : Bezpłatne
-                {% else %}
-                    <tr>Wynagrodzenie : {{ praktyki.wynagrodzenie }}</tr>
-                {% endifequal %}
-                <br>
-                <tr>Opis : {{ praktyki.opis }}</tr>
-                <br>
-                <tr>Data Rozpoczecia : {{ praktyki.dataRozpoczecia }} Data Zakończenia
-                    : {{ praktyki.dataZakonczenia }}</tr><br>
-                <tr>Kontakt : {{ praktyki.id_Firma }}</tr><br>
-                <br>
-                {% ifequal id_Firma user.nazwafirmy %}
-                    <button class="btn btn-secondary bg-dark"><a class="text-white" href="dolacz/{{ praktyki.id_Praktyki }}">Wybierz</a></button>
-                {% else %}
+                    <tr>Stanowisko : {{ praktyki.stanowisko }}</tr>
+                    <br>
+                    {% ifequal praktyki.wynagrodzenie '0' %}
+                        Wynagrodzenie : Bezpłatne
+                    {% else %}
+                        <tr>Wynagrodzenie : {{ praktyki.wynagrodzenie }}</tr>
+                    {% endifequal %}
+                    <br>
+                    <tr>Opis : {{ praktyki.opis }}</tr>
+                    <br>
+                    <tr>Data Rozpoczecia : {{ praktyki.dataRozpoczecia }} Data Zakończenia
+                        : {{ praktyki.dataZakonczenia }}</tr><br>
+                    <tr>Kontakt : {{ praktyki.id_Firma }}</tr><br>
+                    <br>
+                    {% if user.firma or user.opiekun %}
+                        <button class="btn btn-secondary bg-dark" type="submit"><a class="text-white"
+                                                                                   href="usun_praktyke/{{ praktyki.id_Praktyki }}">Usuń</a>
+                        </button>
+                        <button class="btn btn-secondary bg-dark" type="submit"><a class="text-white"
+                                                                                   href="edytuj_praktyke/{{ praktyki.id_Praktyki }}">Edytuj</a>
+                        </button>
+                    {% else %}
+                        <button class="btn btn-secondary bg-dark"><a class="text-white"
+                                                                     href="dolacz/{{ praktyki.id_Praktyki }}">Wybierz</a>
+                        </button>
 
-                    <button class="btn btn-secondary bg-dark" type="submit"><a class="text-white"
-                                                                               href="usun_praktyke/{{ praktyki.id_Praktyki }}">Usuń</a>
-                    </button>
-                    <button class="btn btn-secondary bg-dark" type="submit"><a class="text-white"
-                                                                               href="edytuj_praktyke/{{ praktyki.id_Praktyki }}">Edytuj</a>
-                    </button>
-                {% endifequal %}
-                <br><br>
-            {% endfor %}
-        </div>
+                    {% endif %}
+                    <br><br>
+                {% endfor %}
+            </div>
         </ul>
     </div>
     <div id="footer" class="footer">

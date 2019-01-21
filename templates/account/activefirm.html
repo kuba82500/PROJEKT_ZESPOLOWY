@@ -50,18 +50,20 @@
             </div>
         </nav>
     </div>
-    <div id="mid" class="mid text-center">
+    <div id="mid" class="mid text-center"><br><br>
         <form method="POST">
             {% csrf_token %}
-                {{ form.id_Praktyki }}
-                {{ form.uczestnik }}
-                <h2>Czy chcesz dołączyć do wybranych praktyk ? </h2>
-                <button class="btn btn-secondary bg-dark">Dołącz do praktyk</button>
-
+            {% if form.active %}
+                <p>Firma jest aktywna</p><br>
+                <button><a href="{% url 'listafirm' %}">Powrót</a></button>
+            {% else %}
+                Status firmy : {{ form.active }}<br>
+                <button type="submit" class="btn btn-secondary bg-dark">Aktywuj Firmę</button>
+            {% endif %}
 
         </form>
-        <br><br>
     </div>
+    <br><br><br><br><br><br><br><br><br><br><br><br>
     <div id="footer" class="footer">
         <div class="footer-copyright text-center py-3 bg-dark text-white">
             © Copyright: Projekt Zespołowy 2018/2019

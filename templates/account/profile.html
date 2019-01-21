@@ -46,9 +46,12 @@
                     listę własnych praktyk</a></button><br><br>
                 <button class="btn btn-secondary bg-dark"><a class="text-white" href="{% url 'create_practice' %}">Dodaj
                     praktykę do systemu</a></button>
-                {% elif user.opiekun %}
-                    <p>KONTO OPIEKUNA</p>
-                {% else %}
+            {% elif user.opiekun %}
+                <h2 class="text-center">KONTO OPIEKUNA</h2>
+                <p>Panel Opiekuna </p>
+                <button class="btn btn-secondary bg-dark"><a href="{% url 'listafirm' %}">Firmy oczekujące akceptacji</a></button><br><br>
+                <button class="btn btn-secondary bg-dark"><a href="{% url 'praktyki' %}">Lista Praktyk w systemie</a></button>
+            {% else %}
                 <p>Dane Studenta : </p>
                 <p>Imię i Nazwisko : {{ user.name }} {{ user.surname }}</p>
                 <p>Email : {{ user.email }}</p>
