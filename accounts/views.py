@@ -59,4 +59,4 @@ class LoginView(FormView):
 
 def logout_view(request):
     logout(request)
-    return render(request, 'main.html')
+    return render(request, 'index.html')

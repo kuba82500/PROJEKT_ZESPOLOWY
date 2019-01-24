@@ -4,8 +4,23 @@ from .models import User
 
 
 class RegisterFormOpiekun(forms.ModelForm):
-    password1 = forms.CharField(label='Password', widget=forms.PasswordInput)
-    password2 = forms.CharField(label='Password confirmation', widget=forms.PasswordInput)
+    password1 = forms.CharField(label='Password', widget=forms.PasswordInput(
+        attrs={
+            'placeholder': 'Hasło'
+        }
+    ))
+    password2 = forms.CharField(label='Password confirmation', widget=forms.PasswordInput(
+        attrs={
+            'placeholder': 'Powtórz Hasło'
+        }
+    ))
+
+    email = forms.EmailField(widget=forms.TextInput(
+        attrs={
+            'class': 'form-control',
+            'placeholder': 'Email'
+        }
+    ))
 
     class Meta:
         model = User
@@ -48,7 +63,7 @@ class RegisterFormFirma(forms.ModelForm):
         }
     ))
 
-    email = forms.EmailField(widget=forms.EmailInput(
+    email = forms.EmailField(widget=forms.TextInput(
         attrs={
             'class': 'form-control',
             'placeholder': 'Email'
