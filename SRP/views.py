@@ -6,7 +6,7 @@ from accounts.models import User
 
 
 def main_page(request):
-    return render(request, 'main.html')
+    return render(request, 'index.html')
 
 
 @login_required()
@@ -23,6 +23,7 @@ def activefirm(request, id):
     if request.method == 'POST':
         if form.is_valid():
             form.save()
+        return redirect(listafirm)
 
     return render(request, 'account/activefirm.html', {'form': form})
 
@@ -69,6 +70,20 @@ def edytuj_praktyke(request, id_Praktyki):
     if request.method == 'POST':
         if form.is_valid():
             form.save()
+        return redirect(lista_praktyk_firma)
+
+    return render(request, 'practice/edytuj_praktyke.html', {'form': form})
+
+
+@login_required()
+def edytuj_praktyke_opiekun(request, id_Praktyki):
+    praktyka = get_object_or_404(Praktyki, pk=id_Praktyki)
+    form = StworzPraktyke(request.POST or None, instance=praktyka)
+
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+        return redirect(lista_praktyk)
 
     return render(request, 'practice/edytuj_praktyke.html', {'form': form})
 
@@ -80,6 +95,17 @@ def usun_praktyke(request, id_Praktyki):
     if request.method == 'POST':
         praktyka.delete()
         return redirect(lista_praktyk_firma)
+
+    return render(request, 'practice/confirm.html', {'praktyka': praktyka})
+
+
+@login_required()
+def usun_praktyke_opiekun(request, id_Praktyki):
+    praktyka = get_object_or_404(Praktyki, pk=id_Praktyki)
+
+    if request.method == 'POST':
+        praktyka.delete()
+        return redirect(lista_praktyk)
 
     return render(request, 'practice/confirm.html', {'praktyka': praktyka})
 

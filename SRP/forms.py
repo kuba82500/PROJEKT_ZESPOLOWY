@@ -41,12 +41,6 @@ class StworzPraktyke(ModelForm):
         }
     ))
 
-    iloscMiejscMax = forms.IntegerField(widget=forms.TextInput(
-        attrs={
-            'class': 'form-control'
-        }
-    ))
-
     class Meta:
         model = Praktyki
         fields = [
