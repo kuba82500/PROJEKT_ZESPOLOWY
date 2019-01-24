@@ -1,0 +1,57 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,900&subset=latin-ext">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="{% static "style.css" %}">
+    <title>Rejestracja na Praktyki</title>
+</head>
+<body>
+<div id="wrapper">
+    <nav>
+        <div>
+            <img class="logo" src="{% static 'img/uwm2018.png' %}" height=60 alt="uwm">
+        </div>
+        <div class="navigation">
+            {% if not user.is_authenticated %}
+                <ul>
+                    <li><a href="{% url 'login' %}">Zaloguj</a></li>
+                    <li><a href="{% url 'signup_firm' %}">Rejestracja(FIRMA)</a></li>
+                    <li><a href="{% url 'signup' %}">Rejestracja(STUDENT)</a></li>
+                    <li><a href="{% url 'signup_opiekun' %}">Rejestracja(OPIEKUN)</a></li>
+                    <li><a href="{% url 'main' %}">Strona główna</a></li>
+                </ul>
+            {% else %}
+                <ul>
+                    <li><a href="{% url 'logout' %}">Wyloguj</a></li>
+                    <li><a href="{% url 'user_settings' %}">Konto</a></li>
+                    {% if user.firma %}
+                        <li><a href="{% url 'praktyki_firma' %}">Lista Praktyk</a></li>
+                    {% else %}
+                        <li><a href="{% url 'praktyki' %}">Lista Praktyk</a></li>
+                    {% endif %}
+                    <li><a href="{% url 'main' %}">Strona główna</a></li>
+                </ul>
+            {% endif %}
+        </div>
+    </nav>
+    <header>
+        <h1>Rejestracja na Praktyki</h1>
+        <div class="photo">
+            <img src="{% static 'img/uwm4.jpg' %}" alt="uwm">
+        </div>
+        <div class="napis">
+            <p><b>Studencie! Zacznij już dziś swoją karierę zawodową :)</b></p>
+        </div>
+    </header>
+    <footer id="footer">
+        <div class="notka">
+            <p>&copy; Copyright Projekt Zespołowy 2019</p>
+        </div>
+    </footer>
+</div>
+</body>
+</html>
