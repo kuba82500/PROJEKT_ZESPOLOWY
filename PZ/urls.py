@@ -5,7 +5,7 @@ from django.conf.urls.static import static
 
 from accounts.views import UserRegisterView, FirmaRegisterView, LoginView, logout_view, OpiekunRegisterView
 from SRP.views import lista_praktyk, lista_praktyk_firma, stworz_Praktyke, edytuj_praktyke, usun_praktyke, main_page, \
-    user_profile, dolaczdopraktyk, listafirm, activefirm
+    user_profile, dolaczdopraktyk, listafirm, activefirm, edytuj_praktyke_opiekun, usun_praktyke_opiekun
 
 urlpatterns = [
                   path('admin/', admin.site.urls),
@@ -23,7 +23,10 @@ urlpatterns = [
                   path('praktyki_firma/', lista_praktyk_firma, name='praktyki_firma'),
                   path('str_pr/', stworz_Praktyke, name='create_practice'),
                   path('praktyki/edytuj_praktyke/<int:id_Praktyki>', edytuj_praktyke, name="edytuj_praktyke"),
+                  path('praktyki/edytuj_praktyke_opiekun/<int:id_Praktyki>', edytuj_praktyke_opiekun,
+                       name="edytuj_praktyke_opiekun"),
                   path('praktyki/usun_praktyke/<int:id_Praktyki>', usun_praktyke, name="usun_praktyke"),
+                  path('praktyki/usun_praktyke_opiekun/<int:id_Praktyki>', usun_praktyke_opiekun, name="usun_praktyke_opiekun"),
                   path('praktyki_firma/edytuj_praktyke/<int:id_Praktyki>', edytuj_praktyke, name="edytuj_praktyke"),
                   path('praktyki_firma/usun_praktyke/<int:id_Praktyki>', usun_praktyke, name="usun_praktyke"),
                   path('praktyki/dolacz/<int:id_Praktyki>', dolaczdopraktyk, name='dolacz'),
