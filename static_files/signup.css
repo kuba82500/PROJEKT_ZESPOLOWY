@@ -1,0 +1,96 @@
+*{
+    margin:0;
+    padding: 0;
+    background-size: cover;
+    background-position: center;
+    font-family: Roboto, sans-serif;
+}
+
+body {
+    background: url(img/tlo1.jpg);
+}
+
+div.box{
+    width: 450px;
+    height: 750px;
+    background: #000;
+    color: #fff;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%,-50%);
+    box-sizing: border-box;
+    padding: 70px 30px;
+    opacity: 0.8;
+}
+
+img.avatar {
+    width: 100px; /* szerokość obrazka */
+    height: 100px; /* wysokość obrazka */
+    border-radius: 50%; /* powoduje zaokrąglenie */
+    position: absolute;
+    top: -50px; /* przesuwa obrazek o 50px do góry */
+    left: calc(50% - 50px);
+}
+
+h1 {
+    margin: 0;
+    padding: 0 0 20px;
+    text-align: center;
+    font-size: 22px;
+}
+
+div.box p {
+    margin: 0;
+    padding:0;
+    font-weight: bold;
+
+}
+
+div.box input{
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+div.box input[type="text"], input[type="password"]
+{
+    border: none;
+    border-bottom: 1px solid #fff;
+    background: transparent;
+    outline: none;
+    height: 40px;
+    color: #fff;
+    font-size: 16px;
+}
+
+div.box input[type="submit"]
+{
+    border: none;
+    outline: none;
+    height: 40px;
+    background: #6699CC;
+    color: #fff;
+    font-size: 18px;
+    border-radius: 20px;
+}
+
+div.box input[type="submit"]:hover{
+    cursor: pointer;
+    background: #ffc107;
+    color: #000;
+}
+
+div.box a{
+    text-decoration: none;
+    font-size: 12px;
+    line-height: 20px;
+    color:darkgray;
+}
+
+div.box a:hover {
+    cursor: pointer;
+    color: #ffc107;
+}
+
+
+

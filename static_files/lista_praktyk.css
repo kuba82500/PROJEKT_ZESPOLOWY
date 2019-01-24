@@ -40,22 +40,46 @@ nav div.navigation ul li a:hover {
     padding: 23px 30px;
 }
 
-header h1 {
-    padding-top: 10px;
-    text-align: center;
+div.box {
+    width: 600px;
+    height: auto;
+    padding-left: 20px;
+    text-align: left;
+    padding-bottom: 40px;
 }
 
-header div.photo {
+div.naglowek_listaPraktyk h1 {
     text-align: center;
+    margin: 0;
+    padding: 60px 0 20px;
+    font-size: 40px;
 }
 
-header div.napis {
-    padding-top: 5px;
-    text-align: center;
+div.box p {
+    margin: 0;
+    padding: 15px;
+    font-weight: bold;
+
 }
 
-header div.napis p {
-    text-decoration: underline;
+div.box input[type="submit"] {
+    border: none;
+    outline: none;
+    height: 40px;
+    width: 90px;
+    background: orange;
+    color: black;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 20px;
+    margin: 5px;
+    margin-left: 20px;
+}
+
+div.box button[type="submit"]:hover {
+    cursor: pointer;
+    background: #ffc107;
+    color: #000;
 }
 
 #footer {
